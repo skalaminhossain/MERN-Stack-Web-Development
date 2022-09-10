@@ -1,0 +1,5 @@
+Node js module there are three type of module 
+
+1. core module ( Builtin module in node js . this module provide from node js)
+2. Local module ( We crate this module )
+3. Thired Party module ( Provide anyone from npm package manager
