@@ -1,88 +1,178 @@
-const MongoClint = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient
 
 const URL = "mongodb+srv://skalaminhossain:skalamin@cluster0.edfqrta.mongodb.net/School?retryWrites=true&w=majority"
 
 const config = {useUnifiedTopology : true};
 
-MongoClint.connect(URL , config , (err , MyMongoClint) => {
+MongoClient.connect(URL , config , (err , mongoinfo) => {
     if(err){
-        console.log("Connection Failed");
+        console.log("Connection error");
     }else{
-        console.log("Connection success");
-        insertData(MyMongoClint)
-        // deleteOneItem(MyMongoClint)
-        // deleteManyItem(MyMongoClint)
-        findOne(MyMongoClint)
-
+        console.log("Connection Success");
+        // insertData(mongoinfo)
+        // deleteOneData(mongoinfo)
+        // deleteManyData(mongoinfo)
+        // findOneDataWithoutCondition(mongoinfo)
+        // findOneDatawithCondition(mongoinfo)
+        // findAllData(mongoinfo)
+        // findDataByProjection(mongoinfo)
+        // findDataQuery(mongoinfo)
+        // findDataLimit(mongoinfo)
+        // findDataBySort(mongoinfo)
+        updateData(mongoinfo)
+        
     }
 })
 
 
-const insertData = (MyMongoClint) => {
+//insert Many Data
 
-    const dataBase = MyMongoClint.db("School")
-    const collection = dataBase.collection('Students')
+const insertData = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
 
-    let data ={name :"bakililah" , age : 20 , depertment : "Electrical"}
-    collection.insertOne(data , (err) => {
+    const data = [
+        {name : 'alamin' , age : 20 , depertmnet : "Electrical"},
+        {name : 'anamul' , age : 21 , depertmnet : "Civil"},
+        {name : 'nazmul' , age : 19 , depertmnet : "computer"},
+        {name : 'bakibillah' , age : 22 , depertmnet : "Electrical"},
+    ]
+
+    myCollection.insertMany(data , (err) => {
         if(err){
             console.log("Insert Failed");
         }else{
-            console.log("Insert Success");
+            console.log("Insert Success")
         }
     })
-
 }
 
-// delete one item
+//delete one spesefic data
 
-const deleteOneItem = (MyMongoClint) => {
-    const dataBase = MyMongoClint.db("School")
-    const collection = dataBase.collection('Students')
+const deleteOneData = (mongoinfo) => {
+    const dataBase = mongoinfo.db("School")
+    const myCollection = dataBase.collection('Students')
 
-    const data = {name : "alamin"}
+    const data = {name : 'nazmul'}
 
-    collection.deleteOne(data , (err) => {
+    myCollection.deleteOne(data , (err) => {
         if(err){
-            console.log("Data Delete Failed");
+            console.log("Data Deleted Failed");
         }else{
-            console.log("Data Delete Success");
+            console.log("Data Deleted");
         }
     })
+}
 
+//delete Many data
+
+const deleteManyData = (mongoinfo) => {
+    const dataBase = mongoinfo.db("School")
+    const myCollection = dataBase.collection('Students')
+
+    // const data = [{name : "alamin"} , {name : "bakibillah"}]
+
+    myCollection.deleteMany((err , result) => {
+        if(err){
+            console.log("data deleted failed");
+        }else{
+            console.log(result.deletedCount);
+        }
+    })
+}
+
+//find one data without condition 
+const findOneDataWithoutCondition = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
     
-}
-
-//delete many item
-
-const deleteManyItem = (MyMongoClint) => {
-    const dataBase = MyMongoClint.db("School")
-    const collection = dataBase.collection('Students')
-
-
-    collection.deleteMany( (err , obj) => {
-        if(err){
-            console.log("all data deleted fail");
-        }else{
-            console.log(obj);
-        }
+    myCollection.findOne((err , result) => {
+        console.log(result);
     })
-
-    
 }
 
-const findOne = (MyMongoClint) =>{
-    const dataBase = MyMongoClint.db("School")
-    const collection = dataBase.collection("Student")
 
-    const data = {name : "nazmul"}
+// find one data with condition
+const findOneDatawithCondition = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
 
-    collection.findOne(data , (err , result) => {
-        if(err){
-            console.log("Data Find Failed");
-        }else{
-            console.log(result);
-        }
+    const findData = {name : "nazmul"}
+
+    myCollection.findOne(findData , (err , result) => {
+        console.log(result);
+    })
+}
+
+//find all data 
+const findAllData = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
+
+    myCollection.find().toArray((err , result) => {
+        console.log(result);
+    })
+}
+
+// find data by projection
+
+const findDataByProjection = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
+
+    const itemObj = {}
+    const itemProjection = {projection : {age : "20"}}
+
+    myCollection.find(itemObj , itemProjection).toArray((err , result) => {
+        console.log(result);
+    })
+}
+
+//find data with query param
+
+const findDataQuery = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
+
+    const query = {age : 20}
+
+    myCollection.find(query).toArray((err , result) => {
+        console.log(result);
+    })
+}
+
+//data find Limit
+
+const findDataLimit = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
+
+
+    myCollection.find().limit(5).toArray((err , result) => {
+        console.log(result);
+    })
+}
+
+
+const findDataBySort = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
+
+    const sortData = {age:-1}
+    myCollection.find().sort(sortData).toArray((err , result) => {
+        console.log(result);
+    })
+}
+
+const updateData = (mongoinfo) => {
+    const dataBase = mongoinfo.db('School')
+    const myCollection = dataBase.collection('Students')
+
+    const dataquery = {age : 20 }
+    const updateQuery = {$set : {age : 21}}
+
+    myCollection.updateOne(dataquery , updateQuery , (err , result) => {
+        console.log(result);
     })
 }
 
