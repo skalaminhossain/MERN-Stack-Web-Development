@@ -1,91 +1,80 @@
-const MongoClient = require('mongodb').MongoClient
+//Configure Mongodb
 
-const URL = "mongodb+srv://skalaminhossain:skalamin@cluster0.edfqrta.mongodb.net/Cricketer?retryWrites=true&w=majority"
+const { MongoClient } = require('mongodb')
+const URL= "mongodb://localhost:27017"
+const dbInfo = new MongoClient(URL)
 
-const config = {useUnifiedTopology : true};
+// Create Cricketers
+const creatCricketers = async() => {
+    try {
+        const dababase = dbInfo.db("Cricketers")
+        const cricketersInfo = dababase.collection('cricketerInformation')
 
-MongoClient.connect(URL , config , (err , dataBaseInfo) => {
-    if(err){
-        console.log("Connection Failed");
-    }else{
-        console.log("Connection Success");
-        // creatCricketer(dataBaseInfo)
-        findCricketer(dataBaseInfo)
-        // updateCricketer(dataBaseInfo)
-        // deleteCricketer(dataBaseInfo)
+        const cricketers = [
+            {name : "Mustafizur Rahman" , age : 27 , role : 'Bowler' , bowlingStyle : 'Left Arm Fast'},
+            {name : "Sakib Al Hasan" , age : 35 , role : 'All-rounder' , bowlingStyle : "Left Arm Orthodox"},
+            {name : "Afif Hossain" , age : 23 , role : "All-rounder" , battingStyle : "Left Handed"},
+            {name : "Liton Kumar Das" , age : 26 , role : "Batter" , battingStyle :"Right Handed"},
+            {name : "Sabbir Hossain" , age : 27 , role : "Batter" , battingStyle : "Right Handed"}
+        ]
+
+        const result = await cricketersInfo.insertMany(cricketers)
+        console.log("Cricketer SuccessFully Created" , result , result.insertedCount);
+
+    }catch (err){
+        console.log(err);
     }
-})
+}
 
+// Real Cricketer Information
 
-// Create Cricketers Information
-
-const creatCricketer = (dataBaseInfo) => {
-    const dataBase = dataBaseInfo.db('Cricketer')
-    const cricketerCollection = dataBase.collection('CricketerInfo')
-
-    const cricketer = [
-        {name : "Mustafizur Rahman" , age : 27 , role : 'Bowler' , bowlingStyle : 'Left Arm Fast'},
-        {name : "Sakib Al Hasan" , age : 35 , role : 'All-rounder' , bowlingStyle : "Left Arm Orthodox"},
-        {name : "Afif Hossain" , age : 23 , role : "All-rounder" , battingStyle : "Left Handed"},
-        {name : "Liton Kumar Das" , age : 26 , role : "Batter" , battingStyle :"Right Handed"},
-        {name : "Sabbir Hossain" , age : 27 , role : "Batter" , battingStyle : "Right Handed"}
-    ]
+const readCricketers = async() => {
+    try {
+        const dababase = dbInfo.db("Cricketers")
+        const cricketersInfo = dababase.collection('cricketerInformation')
     
-    cricketerCollection.insertMany(cricketer , (err) => {
-        if(err){
-            console.log("Cricketer Insert Failed");
-        }else{
-            console.log("Cricketer Insert Success");
-        }
-    })
+        const query = {}
+        const finder = await cricketersInfo.find(query).toArray()
+        console.log(finder);
+    }catch (err){
+        console.log(err);
+    }
+   
 }
 
-// Read Cricketer Information
-//Read all Cricketer Information
-const findCricketer = (dataBaseInfo) => {
-    const dataBase = dataBaseInfo.db('Cricketer')
-    const cricketerCollection = dataBase.collection('CricketerInfo')
+//Update Cricketer Information
 
-    cricketerCollection.find().toArray((err , cricketers) => {
-        if(err){
-            console.log("find data Failed");
-        }else{
-            console.log(cricketers);
-        }
-    })
+const updateCricketersInfo = async() => {
+    try {
+        const dababase = dbInfo.db("Cricketers")
+        const cricketersInfo = dababase.collection('cricketerInformation')
+
+        const queryRole = {role : "All-rounder"}
+        const updateRoleQuery = {$set : {role : "Batter"}}
+
+        const result = await cricketersInfo.updateMany(queryRole , updateRoleQuery)
+        console.log("Cricketer Information Successfuly Updateed ,  " ,"updated data"  + " " +  result.modifiedCount);
+    }catch (err) {
+        console.log(err);
+    }
 }
 
-// Update Cricketer Information
+const deleteCricketers = async() => {
+    try {
+        const dababase = dbInfo.db("Cricketers")
+        const cricketersInfo = dababase.collection('cricketerInformation')
 
-const updateCricketer = (dataBaseInfo) => {
-    const dataBase = dataBaseInfo.db('Cricketer')
-    const cricketerCollection = dataBase.collection('CricketerInfo')
-
-    let queryRole = {role : "All-rounder"}
-    let updateRole = {$set : {role : "Batter"}}
-
-    cricketerCollection.updateMany(queryRole , updateRole , (err , result) => {
-        if(err){
-            console.log("Update Failed");
-        }else{
-            console.log(result);
-        }
-    })
-
+        const deleteQuery = {}
+        const result = await cricketersInfo.deleteMany(deleteQuery)
+        console.log("Cricketers SuccessFully Deleted" ,  result.deletedCount);
+    }catch (err) {
+        console.log(err);
+    }
 }
 
-//  Delete Cricketer Information
+//CRUD Functions
 
-const deleteCricketer = (dataBaseInfo) => {
-    const dataBase = dataBaseInfo.db('Cricketer')
-    const cricketerCollection = dataBase.collection('CricketerInfo')
-
-    cricketerCollection.deleteMany((err) => {
-        if(err){
-            console.log("Delete All Cricketer Failed");
-        }else{
-            console.log("Delete Success all cricketer");
-        }
-    })
-
-}
+creatCricketers()
+// readCricketers()
+// updateCricketersInfo()
+// deleteCricketers()
