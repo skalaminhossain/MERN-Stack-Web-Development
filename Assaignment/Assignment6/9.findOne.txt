@@ -1,0 +1,1 @@
+db.playersinfo.findOne({name : "Taskin Ahmed"})

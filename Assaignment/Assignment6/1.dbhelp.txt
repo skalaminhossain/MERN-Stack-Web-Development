@@ -1,0 +1,3 @@
+db.help()
+
+all builtin command for mongodb Database

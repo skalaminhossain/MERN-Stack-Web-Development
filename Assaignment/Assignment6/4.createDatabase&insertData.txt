@@ -1,0 +1,3 @@
+use Players
+
+ db.playersinfo.insert({name : "Sabbir Rahman" , role : "Battar"})

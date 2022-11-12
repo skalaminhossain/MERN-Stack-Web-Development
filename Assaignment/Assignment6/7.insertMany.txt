@@ -1,0 +1,3 @@
+ db.playersinfo.insertMany([ {name : "Rubel Hossain" , role : "Bowler"}, 
+	{name : "Taskin Ahmed" , role : "Bowler"}
+ ])

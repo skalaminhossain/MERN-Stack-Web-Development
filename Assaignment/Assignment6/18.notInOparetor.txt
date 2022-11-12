@@ -1,0 +1,1 @@
+db.Products.find({price:{$nin:["100","300","1000"]}} , {price:1 , catagory:1 , stock:1 , _id:0})

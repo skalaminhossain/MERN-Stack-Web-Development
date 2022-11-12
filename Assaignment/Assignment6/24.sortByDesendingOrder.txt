@@ -1,0 +1,1 @@
+db.Products.find({},{title:1 , price:1}).sort({price:-1}).limit(5)

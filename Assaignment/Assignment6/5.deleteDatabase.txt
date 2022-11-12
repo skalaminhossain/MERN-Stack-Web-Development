@@ -1,0 +1,3 @@
+ use Cricketer
+
+ db.dropDatabase()

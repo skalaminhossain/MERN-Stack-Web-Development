@@ -1,0 +1,1 @@
+db.Products.find({price:{$ne:"1000"}} , {price:1 , catagory:1 , stock:1 , _id:0})

@@ -1,0 +1,1 @@
+db.Products.find({$or:[{price:{$eq: "130"}} , {special_price:{$eq:"NA"}}]} , {price:1 , special_price:1 , category:1})
