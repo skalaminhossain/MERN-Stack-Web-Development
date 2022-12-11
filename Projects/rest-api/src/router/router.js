@@ -1,12 +1,8 @@
 const router = require('express').Router()
-// const handler = require('../contorllers/contorllers')
-const PlayersController = require('../contorllers/players')
+const ProfileController = require('../contorllers/ProfileControllers')
+const AuthVerifyMiddleware =require('../middlewares/AuthVerifyMiddleware')
 
-
-
-
-// router.post('/Players' , PlayersController)
-// router.post('/user' , user)
-router.get('/findPlayers' , PlayersController.ReadPlayers)
+router.post('/createprofile' , ProfileController.CreateProfile)
+router.post('/loginprofile' , ProfileController.LoginProfile)
 
 module.exports = router

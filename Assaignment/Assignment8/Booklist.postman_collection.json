@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "96b1d4f8-5ada-4413-b4f0-29a503a4bb50",
+		"name": "Booklist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23281225"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FullName\" : \"MD Alamin Hossain\",\r\n    \"username\" : \"mdalaminhossain\",\r\n    \"email\" : \"mdalamin@gmail.com\",\r\n    \"password\" : \"alamin777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzOGNkODQ1ZmQ3YmI1OWFjODQ0MjQ2NyIsIkZ1bGxOYW1lIjoiTUQgQWxhbWluIEhvc3NhaW4iLCJ1c2VybmFtZSI6Im1kYWxhbWluaG9zc2FpbiIsImVtYWlsIjoibWRhbGFtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiJhbGFtaW43NzciLCJfX3YiOjB9LCJpYXQiOjE2NzAxNzQ5MjF9.7MoeVF2lkTgbQ6Wi6aN1sln9NVeTX6fDqCiEIVsE5J0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"mdalaminhossain\",\r\n    \"password\" : \"alamin777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProfile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzOGNkODQ1ZmQ3YmI1OWFjODQ0MjQ2NyIsIkZ1bGxOYW1lIjoiTUQgQWxhbWluIEhvc3NhaW4iLCJ1c2VybmFtZSI6Im1kYWxhbWluaG9zc2FpbiIsImVtYWlsIjoibWRhbGFtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiJhbGFtaW43NzciLCJfX3YiOjB9LCJpYXQiOjE2NzAxNzQ5MjF9.7MoeVF2lkTgbQ6Wi6aN1sln9NVeTX6fDqCiEIVsE5J0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"alaminhossain@gmail.com\",\r\n    \"password\" : \"alaminhossain777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/updateUser",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzOGNkODQ1ZmQ3YmI1OWFjODQ0MjQ2NyIsIkZ1bGxOYW1lIjoiTUQgQWxhbWluIEhvc3NhaW4iLCJ1c2VybmFtZSI6Im1kYWxhbWluaG9zc2FpbiIsImVtYWlsIjoibWRhbGFtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiJhbGFtaW43NzciLCJfX3YiOjB9LCJpYXQiOjE2NzAxNzQ5MjF9.7MoeVF2lkTgbQ6Wi6aN1sln9NVeTX6fDqCiEIVsE5J0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booklists",
+			"item": [
+				{
+					"name": "GetBookList",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzOGNkODQ1ZmQ3YmI1OWFjODQ0MjQ2NyIsIkZ1bGxOYW1lIjoiTUQgQWxhbWluIEhvc3NhaW4iLCJ1c2VybmFtZSI6Im1kYWxhbWluaG9zc2FpbiIsImVtYWlsIjoibWRhbGFtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiJhbGFtaW43NzciLCJfX3YiOjB9LCJpYXQiOjE2NzAxNzQ5MjF9.7MoeVF2lkTgbQ6Wi6aN1sln9NVeTX6fDqCiEIVsE5J0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/getBooklist",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"getBooklist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBookLIst",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzOGNkODQ1ZmQ3YmI1OWFjODQ0MjQ2NyIsIkZ1bGxOYW1lIjoiTUQgQWxhbWluIEhvc3NhaW4iLCJ1c2VybmFtZSI6Im1kYWxhbWluaG9zc2FpbiIsImVtYWlsIjoibWRhbGFtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiJhbGFtaW43NzciLCJfX3YiOjB9LCJpYXQiOjE2NzAxNzQ5MjF9.7MoeVF2lkTgbQ6Wi6aN1sln9NVeTX6fDqCiEIVsE5J0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\" : \"638cdbd0fd7bb59ac844246d\",\r\n    \"Description\" : \"Updated Free Fire\",\r\n    \"Status\" : \"New\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/updateBooklist",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"updateBooklist"
+							],
+							"query": [
+								{
+									"key": "Aut",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeBook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzOGNkODQ1ZmQ3YmI1OWFjODQ0MjQ2NyIsIkZ1bGxOYW1lIjoiTUQgQWxhbWluIEhvc3NhaW4iLCJ1c2VybmFtZSI6Im1kYWxhbWluaG9zc2FpbiIsImVtYWlsIjoibWRhbGFtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiJhbGFtaW43NzciLCJfX3YiOjB9LCJpYXQiOjE2NzAxNzQ5MjF9.7MoeVF2lkTgbQ6Wi6aN1sln9NVeTX6fDqCiEIVsE5J0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\" : \"638cdbd0fd7bb59ac844246d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/removeBooklist",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"removeBooklist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByStatus",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzOGNkODQ1ZmQ3YmI1OWFjODQ0MjQ2NyIsIkZ1bGxOYW1lIjoiTUQgQWxhbWluIEhvc3NhaW4iLCJ1c2VybmFtZSI6Im1kYWxhbWluaG9zc2FpbiIsImVtYWlsIjoibWRhbGFtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiJhbGFtaW43NzciLCJfX3YiOjB9LCJpYXQiOjE2NzAxNzQ5MjF9.7MoeVF2lkTgbQ6Wi6aN1sln9NVeTX6fDqCiEIVsE5J0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Status\" : \"New\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/findBooksByStatus",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"findBooksByStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateBookList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzOGNkODQ1ZmQ3YmI1OWFjODQ0MjQ2NyIsIkZ1bGxOYW1lIjoiTUQgQWxhbWluIEhvc3NhaW4iLCJ1c2VybmFtZSI6Im1kYWxhbWluaG9zc2FpbiIsImVtYWlsIjoibWRhbGFtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiJhbGFtaW43NzciLCJfX3YiOjB9LCJpYXQiOjE2NzAxNzQ5MjF9.7MoeVF2lkTgbQ6Wi6aN1sln9NVeTX6fDqCiEIVsE5J0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Title\" : \"Free Fire \",\r\n    \"Description\" : \"Free Fire is a Battle Groud Game\",\r\n    \"Status\" : \"Old\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/createbook",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"createbook"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

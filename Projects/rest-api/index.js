@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 
 // DB Connnection
 mongoose
-    .connect(process.env.DATABASE)
+    .connect(process.env.DATABASE , {autoIndex:true})
     .then(console.log("Database Connected"))
     .catch((err) => {console.log(err);})
 
